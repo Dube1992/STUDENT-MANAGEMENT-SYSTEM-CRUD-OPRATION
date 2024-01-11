@@ -7,7 +7,7 @@ def home(request):
     std=Student.objects.all()
     return render(request,"student/home.html",{'std':std})
 
-
+# CREATE METHOD .. INSERT DATA INTO DATABASED
 def student_add(request):
     if request.method=='POST':
         print("value inserted")
@@ -31,11 +31,12 @@ def student_add(request):
 
     return render(request,"student/student_add.html",{})
 
-
+#USING FOR UPDATE PARTICULAR COL BASED ON ID FETCH DATA FROM DATABASED ..
 def student_update(request,roll):
     std=Student.objects.get(pk=roll)
     return render(request,"student/student_update.html",{'std':std})
 
+#AFTER CHANGED REQUIRED VALUE THAN CHANGED VALUE SAVE INTO DATABASED ..
 def do_student_update(request,roll):
     std_roll=request.POST.get("std_roll")
     std_name=request.POST.get("std_name")
@@ -54,7 +55,7 @@ def do_student_update(request,roll):
     std.save()
     return redirect("/student/home/")
 
-
+#THIS METHOD DELETE DATA FROM DATABASED ACCORDING TO ID
 def student_delete(request,roll):
     s=Student.objects.get(pk=roll)
     s.delete()
